@@ -10,7 +10,7 @@ It does not scan resources.
 It does not execute actions.
 It does not modify customer environments.
 
-The sole responsibility of this system is decision evaluation.
+This system focuses on decision evaluation.
 
 Responsibility Boundary
 
@@ -118,19 +118,16 @@ This engine is designed to sit between detection and action:
 
 Execution always happens outside this system.
 
-Non-Goals
+## Non-Goals
 
 The following are intentionally excluded:
 
-UI or dashboards
+- Any user interfaces or dashboards are explicitly out of scope for this system.
+- Automatic remediation or execution of security actions.
+- Enforcement mechanisms.
+- Machine learning–based decision-making.
 
-decision remediation suggestions
-
-decision signaling mechanisms
-
-machine learning–based decisions
-
-These may exist in downstream systems after integration or acquisition.
+These capabilities may exist in downstream systems after integration or acquisition.
 
 Summary (One Sentence)
 
