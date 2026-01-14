@@ -19,7 +19,7 @@ This system focuses on **decision evaluation only**.
 
 This system **never executes actions**.  
 All outputs are **non-binding recommendations**.  
-Customers remain fully responsible for any execution or remediation.
+Customers remain fully responsible for any downstream execution or remediation activities.
 
 This engine:
 - evaluates findings against explicit policies
@@ -36,7 +36,7 @@ This engine **never**:
 ## API Boundary
 
 This system exposes a minimal set of APIs focused solely on **decision evaluation and signaling**.  
-It does not perform actions or change customer environments.  
+It does not perform actions or alter customer environments.  
 All downstream behavior remains the responsibility of the integrator.
 
 ---
@@ -114,7 +114,7 @@ This engine is designed to sit **between detection and action**:
 [ Human or External System ]
 
 
-Execution always happens **outside** this system.
+All execution always happens **outside** this system.
 
 ---
 
