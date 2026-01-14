@@ -1,8 +1,8 @@
-Security Decision Engine
+# Security Decision Engine
 
-Phase2 – Evaluation Only
+Evaluation-Only Decision Layer
 
-What this system is
+## What this system is
 
 This system is a Security Decision Engine that evaluates whether a security finding should be surfaced today based on human-defined policies.
 
@@ -10,92 +10,83 @@ It does not scan resources.
 It does not execute actions.
 It does not modify customer environments.
 
-This system focuses on decision evaluation.
+This system focuses on decision evaluation only.
 
-Responsibility Boundary
+## Responsibility Boundary
 
 This system never executes actions.
-All outputs are non-binding recommendations.
+All outputs are non-binding decision signals.
 Customers remain fully responsible for any execution or remediation.
 
 This engine:
 
-evaluates findings against explicit policies
-
-returns recommendations only
-
-records why a decision was made
+- evaluates findings against explicit, human-defined policies
+- returns decision signals only
+- records why a decision was made
 
 This engine never:
 
-evaluates decisions
+- executes actions
+- applies changes
+- performs remediation
+- modifies infrastructure
 
-applies changes
+## API Boundary
 
-performs remediation
+This system exposes a minimal set of APIs focused solely on decision evaluation and signaling.
+It does not execute, enforce, or apply any security actions.
+All downstream behavior remains the responsibility of the integrator.
 
-modifies infrastructure
-
-Why No Execution
+## Why No Execution
 
 Execution introduces:
 
-legal liability
-
-operational risk
-
-trust erosion
+- legal liability
+- operational risk
+- trust erosion
 
 Therefore, execution is explicitly out of scope.
 
 This design allows the engine to be:
 
-safely embedded into any security platform
+- safely embedded into any security platform
+- reused across vendors and environments
+- evaluated without assuming customer risk
 
-reused across vendors and environments
+## Decision Semantics
 
-evaluated without assuming customer risk
-
-Decision Semantics
-
-A decision represents today’s recommendation for a specific user.
+A decision represents today’s presentation recommendation for a specific user.
 
 Possible decision types:
 
-show – surface the finding today
-
-suppress – do not surface today
-
-snooze – revisit at a future date
+- show – surface the finding today
+- suppress – do not surface today
+- snooze – revisit at a future date
 
 A decision typically includes:
 
-a human-defined policy_id
-
-a clear reason
-
-a review_at timestamp for re-evaluation
+- a human-defined policy_id
+- a clear reason
+- a review_at timestamp for re-evaluation
 
 If no decision is appropriate, the system may return no decision.
 
 Returning zero decisions is a valid and expected outcome.
 
-Policy Ownership
+## Policy Ownership
 
 Policies are:
 
-defined by humans
-
-owned by customers
-
-interpreted (not created) by this engine
+- defined by humans
+- owned by customers
+- interpreted (not created) by this engine
 
 Policies express intent.
 The engine only evaluates them.
 
 The system does not infer intent, learn intent, or override intent.
 
-Audit & Explainability
+## Audit & Explainability
 
 All decision evaluations can be logged as immutable events.
 
@@ -105,7 +96,7 @@ These events exist to answer one question only:
 
 Events do not represent execution results.
 
-Intended Usage
+## Intended Usage
 
 This engine is designed to sit between detection and action:
 
@@ -114,7 +105,6 @@ This engine is designed to sit between detection and action:
 [ Security Decision Engine ]  ← this system
         ↓
 [ Human or External System ]
-
 
 Execution always happens outside this system.
 
@@ -129,7 +119,7 @@ The following are intentionally excluded:
 
 These capabilities may exist in downstream systems after integration or acquisition.
 
-Summary (One Sentence)
+## Summary (One Sentence)
 
 This system does not execute or automate security actions.
 It only determines whether an action may be required.
