@@ -1,0 +1,17 @@
+{
+  "policy_id": "policy-002",
+  "description": "Snooze medium severity findings for later review",
+  "scope": {
+    "environment": ["prod", "non-prod"]
+  },
+  "conditions": {
+    "severity": ["MEDIUM"]
+  },
+  "decision": {
+    "type": "snooze",
+    "review_in_days": 7
+  },
+  "priority": 5,
+  "created_by": "human",
+  "created_at": "2026-01-10"
+}
