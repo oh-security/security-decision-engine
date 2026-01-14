@@ -28,7 +28,7 @@ records why a decision was made
 
 This engine never:
 
-enforces decisions
+evaluates decisions
 
 applies changes
 
@@ -68,7 +68,7 @@ suppress – do not surface today
 
 snooze – revisit at a future date
 
-All decisions must include:
+A decision typically includes:
 
 a human-defined policy_id
 
@@ -124,9 +124,9 @@ The following are intentionally excluded:
 
 UI or dashboards
 
-automatic remediation
+decision remediation suggestions
 
-enforcement mechanisms
+decision signaling mechanisms
 
 machine learning–based decisions
 
@@ -134,5 +134,5 @@ These may exist in downstream systems after integration or acquisition.
 
 Summary (One Sentence)
 
-This system does not automate security actions.
-It automates the decision of whether action is needed.
+This system does not execute or automate security actions.
+It only determines whether an action may be required.
