@@ -1,0 +1,16 @@
+{
+  "policy_id": "policy-001",
+  "description": "Show high severity findings",
+  "scope": {
+    "environment": ["prod", "non-prod"]
+  },
+  "conditions": {
+    "severity": ["HIGH"]
+  },
+  "decision": {
+    "type": "show"
+  },
+  "priority": 1,
+  "created_by": "human",
+  "created_at": "2026-01-10"
+}
