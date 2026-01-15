@@ -1,0 +1,111 @@
+openapi: 3.0.3
+info:
+  title: Security Decision Engine API
+  description: >
+    API-first Security Decision Engine that evaluates whether a security finding
+    should be surfaced today. This API never executes or enforces actions.
+  version: "0.2.0"
+
+servers:
+  - url: https://api.example.com
+    description: Example server
+
+paths:
+  /decisions:
+    get:
+      summary: Evaluate and return today's decision
+      description: >
+        Evaluates human-defined policies and returns a non-binding decision
+        for the given user. This endpoint never performs execution.
+      parameters:
+        - name: user_id
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: date
+          in: query
+          required: false
+          schema:
+            type: string
+            description: Evaluation date (YYYY-MM-DD). Defaults to today (JST).
+      responses:
+        "200":
+          description: Decision evaluated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DecisionResponse"
+
+  /decision-events:
+    post:
+      summary: Record a decision evaluation event
+      description: >
+        Records the fact that a decision was evaluated. This endpoint records
+        evaluation events only and never execution results.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DecisionEvent"
+      responses:
+        "200":
+          description: Event recorded
+
+components:
+  schemas:
+    DecisionResponse:
+      type: object
+      properties:
+        decision:
+          oneOf:
+            - $ref: "#/components/schemas/Decision"
+            - type: "null"
+
+    Decision:
+      type: object
+      required:
+        - type
+        - policy_id
+        - reason
+        - recommendation
+      properties:
+        type:
+          type: string
+          enum: [show, suppress, snooze]
+        tip_id:
+          type: string
+        severity:
+          type: string
+          enum: [HIGH, MEDIUM, LOW]
+        policy_id:
+          type: string
+        reason:
+          type: string
+        review_at:
+          type: string
+        recommendation:
+          type: boolean
+          enum: [true]
+
+    DecisionEvent:
+      type: object
+      required:
+        - event_type
+        - event_id
+        - user_id
+        - evaluated_at
+        - decision
+      properties:
+        event_type:
+          type: string
+          enum: [decision_evaluated]
+        event_id:
+          type: string
+        user_id:
+          type: string
+        evaluated_at:
+          type: string
+        decision:
+          $ref: "#/components/schemas/Decision"
