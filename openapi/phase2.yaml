@@ -3,7 +3,8 @@ info:
   title: Security Decision Engine API
   description: >
     API-first Security Decision Engine that evaluates whether a security finding
-    should be surfaced today. This API never executes or enforces actions.
+  should be surfaced today. This API provides non-binding recommendations only
+  and does not perform actions or modify customer environments.
   version: "0.2.0"
 
 servers:
