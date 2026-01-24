@@ -29,3 +29,13 @@ Execution and remediation remain entirely outside this system.
 ---
 
 ## Intended Integration
+This engine is designed to sit upstream of notification,
+alerting, or workflow systems.
+
+It evaluates whether a given security finding
+should be shown, suppressed, or deferred,
+but does not trigger any action itself.
+
+Integration is expected to be performed by the consuming system,
+which remains fully responsible for execution,
+remediation, and user-facing behavior.
