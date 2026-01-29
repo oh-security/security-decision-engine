@@ -24,7 +24,7 @@ Customers remain fully responsible for any downstream execution or remediation a
 This engine:
 - evaluates findings against explicit policies
 - returns recommendations only
-- records why a decision was made
+- records the policy evaluation context
 
 This engine **never**:
 - applies changes
@@ -107,12 +107,11 @@ Events do **not** represent execution results.
 
 This engine is designed to sit **between detection and action**:
 
-[ Findings / Alerts ]
-↓
-[ Security Decision Engine ] ← this system
-↓
+[ Findings / Alerts ]  
+↓  
+[ Security Decision Engine ] ← this system  
+↓  
 [ Human or External System ]
-
 
 All execution always happens **outside** this system.
 
@@ -133,4 +132,4 @@ These capabilities may exist in downstream systems after integration or acquisit
 ## Summary (One Sentence)
 
 **This system does not execute or automate security actions.  
-It only determines whether an action may be required.**
+It only determines whether a finding should be surfaced.**
