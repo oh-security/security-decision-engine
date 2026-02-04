@@ -133,3 +133,4 @@ These capabilities may exist in downstream systems after integration or acquisit
 
 **This system does not execute or automate security actions.  
 It only determines whether a finding should be surfaced.**
+
